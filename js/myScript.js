@@ -28,23 +28,38 @@ $(function(){
     }
 
     function playDef(){
-        combinacoes.find(function (element, index){
-
-            var playStrategic = element.filter(a => !playerBoxesMarked.includes(a));
-    
-            console.log("Array: ["+index+"] "+element+"\nValores do playStrategic: "+playStrategic );
-            
-            if(playStrategic.length <= 1){
-                console.log("Sobrou somente: "+ playStrategic)
-                playPc(playStrategic[0]);
-
+        combinacoes.find(function(element){
+            if(element.filter(a => !playerBoxesMarked.includes(a)).length == 1){
+                filter = element.filter(a => !playerBoxesMarked.includes(a));
+                if(playerBoxesMarked.includes(rPlay) == false && pcBoxesMarked.includes(rPlay) == false){
+                    console.log("Verificando se o valor que passou no filtro nao esta marcado \nValor do filtro: "+filter )
+                    playPc(filter);
+                }
             }else{
-                console.log("nada para jogar")
-                return false
-            };
+                console.log("(else)Valor não é 1 ainda");
+            }
         });
+
     };
     
+
+    // ----------------- Backup -------------
+    // function playDef(){
+    //     combinacoes.find(function (element, index){
+
+    //         var playStrategic = element.filter(a => !playerBoxesMarked.includes(a));
+    
+    //         console.log("Array: ["+index+"] "+element+"\nValores do playStrategic: "+playStrategic );
+            
+    //         if(playStrategic.length < 2){
+    //             console.log("Sobrou somente: "+ playStrategic)
+    //             playPc(playStrategic[0]);
+    //         }else{
+    //             console.log("nada para jogar")
+    //         };
+    //     });
+    // };
+
     function playRandom(){
         if(playerBoxesMarked.includes(rPlay) == false && pcBoxesMarked.includes(rPlay) == false){
             console.log('(if)Pc jogou no:' + rPlay);
@@ -53,7 +68,7 @@ $(function(){
         }else{
             while(playerBoxesMarked.includes(rPlay) == true || pcBoxesMarked.includes(rPlay) == true){
                 rPlay = pcPlays[Math.floor(Math.random()*pcPlays.length)];
-                console.log('Escolha atual foi: '+rPlay);
+                // console.log('Escolha atual foi: '+rPlay);
             }
             console.log("(else)Pc jogou no: " + rPlay)
             playPc(rPlay);
@@ -76,6 +91,13 @@ $(function(){
                 playerBoxesMarked.push(idBox)
 
                 playDef();
+                // if(playDef()){
+                //     console.log('---------- Play def verdadeiro')
+                //     // playDef()
+                // }else{
+                //     console.log('---------- Play def falso')
+                //     playRandom();
+                // }
             }else{
                 console.log(playerBoxesMarked)
                 console.log("ID ja incluido")
@@ -84,5 +106,3 @@ $(function(){
         })
         
 });
-
-
