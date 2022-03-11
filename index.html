@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Scripts -->
     <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
+    <script src="js/jquery-modal.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style/jquery-modal.css">
     <link rel="stylesheet" href="style/style.css">
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <div class="container">
-        <div class="box">
+        <div class="placar shadow">
+            <div class="nome borderB">
+                <p>Você</p>
+            </div>
+            <div id="winsPlayer" class="wins">
+                0
+            </div>
+        </div>
+        <div class="box shadow">
             <div class="tittle">
                 <img src="img/grandmother.png" id="image1" width="48px" height="48px">
                 Jogo da velha
@@ -52,7 +64,29 @@
                     <img class="img" src="" >
                 </div>
             </div>
-
     </div>
+    <div class="placar shadow">
+        <div class="nome borderB">
+            <p>Máquina</p>
+        </div>
+        <div id="winsPc" class="wins">
+            0
+        </div>
+    </div>
+    <div id="winner" class="modal">
+        <div class="border blink">
+            
+        </div>
+        <h2>Placar está em: </h2>
+        <div id="divPlacar" class="align-between borderB">
+            
+        </div>
+        <div class="align-between">
+            <button id="btnReplay" class="modalBtn">Jogar Novamente</button>
+            <button id="btnReset" class="modalBtn">Resetar</button>
+        </div>
+    </div>
+    <a href="#winner" rel="modal:open" id="openModal" hidden></a>
+    <a href="#winner" rel="modal:close" id="closeModal"></a>
 </body>
 </html>
